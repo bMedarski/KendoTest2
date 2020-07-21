@@ -1,0 +1,18 @@
+#menu-container {
+    width: 100%;
+    padding: 0 20px;
+    border-right: none;
+    border-left: none;
+    border-radius: 0%;
+    background: #f5f5f5 repeat center 0;
+}
+
+#menu h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+#menu-container .k-menu.k-header {
+    border: none;
+}
