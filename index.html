@@ -5,8 +5,12 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/kendo.bootstrap.mobile.min.css" />
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.bootstrap.min.css" />
     <link rel="stylesheet" href="./styles/menu.css" />
+    <link rel="stylesheet" href="./styles/grid.css" />
+    <link rel="stylesheet" href="./styles/drawer.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -75,13 +79,12 @@
             </div>
         </div>
         <div class="row">
-
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-sm-12">
                 <div class="grid-container">
                     <div id="grid"></div>
                 </div>
             </div>
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-3 col-lg-offset-3 drawer-container">
                 <div id="toolbar"></div>
                 <div id="drawer">
                     <div id="drawer-content">
@@ -142,147 +145,11 @@
                 </div>
             </div>
         </div>
-
     </div>
-    <footer class="footer bg-secondary bg-primary">
+    <footer class="footer bg-primary">
         © 2020 Copyright
     </footer>
-    <style>
-        body {
-            margin: 0;
-        }
-
-        .container-fluid {
-            padding: 0 20px;
-            margin: 0;
-        }
-
-        .footer {
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
-
-        .grid-container {
-            padding: 20px;
-            min-height: calc(100vh - 100px);
-        }
-
-        #drawer-content li {
-            font-size: 1.2em;
-            background: 0 0;
-            border-radius: 0;
-            border-width: 0 0 1px;
-            border-color: rgba(33, 37, 41, 0.125);
-            border-style: solid;
-            line-height: 1.5em;
-        }
-
-        #drawer-content ul {
-            list-style-type: none;
-            padding: 5px;
-        }
-
-        #drawer-content li:last-child {
-            border: 0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .k-toolbar .k-icon {
-            font-size: 18px;
-        }
-
-        #toolbar {
-            background: none;
-            border: none;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            $("#menu").kendoMenu();
-        });
-
-        $(document).ready(function () {
-            $("#grid").kendoGrid({
-                dataSource: {
-                    data: products,
-                    schema: {
-                        model: {
-                            fields: {
-                                ProductName: { type: "string" },
-                                UnitPrice: { type: "number" },
-                                UnitsInStock: { type: "number" },
-                                Discontinued: { type: "boolean" }
-                            }
-                        }
-                    },
-                    pageSize: 20
-                },
-                scrollable: true,
-                sortable: true,
-                filterable: true,
-                pageable: {
-                    input: true,
-                    numeric: false
-                },
-                columns: [
-                    "ProductName",
-                    { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "130px" },
-                    { field: "UnitsInStock", title: "Units In Stock", width: "130px" },
-                    { field: "Discontinued", width: "130px" }
-                ]
-            });
-        });
-
-        $(document).ready(function () {
-            $("#drawer").kendoDrawer({
-                template: "<ul> \
-                            <li data-role='drawer-item' class='k-state-selected'><span class='k-icon k-i-inbox'></span><span class='k-item-text'>Inbox</span></li> \
-                            <li data-role='drawer-separator'></li> \
-                            <li data-role='drawer-item'><span class='k-icon k-i-notification k-i-bell'></span><span class='k-item-text'>Notifications</span></li> \
-                            <li data-role='drawer-item'><span class='k-icon k-i-calendar'></span><span class='k-item-text'>Calendar</span></li> \
-                            <li data-role='drawer-separator'></li> \
-                            <li data-role='drawer-item'><span class='k-icon k-i-hyperlink-email'></span><span class='k-item-text'>Attachments</span></li> \
-                            <li data-role='drawer-item'><span class='k-icon k-i-star-outline k-i-bookmark-outline'></span><span class='k-item-text'>Favourites</span></li> \
-                          </ul>",
-                mode: "push",
-                mini: true,
-                itemClick: function (e) {
-                    if (!e.item.hasClass("k-drawer-separator")) {
-                        e.sender.drawerContainer.find("#drawer-content > div").addClass("hidden");
-                        e.sender.drawerContainer.find("#drawer-content").find("#" + e.item.find(".k-item-text").text()).removeClass("hidden");
-                    }
-                },
-                position: 'right',
-                minHeight: 500,
-                swipeToOpen: true
-            });
-        });
-
-        function toggleDrawer() {
-            var drawerInstance = $("#drawer").data().kendoDrawer;
-            var drawerContainer = drawerInstance.drawerContainer;
-
-            if (drawerContainer.hasClass("k-drawer-expanded")) {
-                drawerInstance.hide();
-            } else {
-                drawerInstance.show();
-            }
-        }
-
-        $("#toolbar").kendoToolBar({
-            items: [
-                { type: "button", icon: "menu", attributes: { "class": "k-flat" }, click: toggleDrawer },
-                { template: "<h4 style='margin-left: 20px;'>Drawer</h4>" }
-            ]
-        });
-    </script>
-
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

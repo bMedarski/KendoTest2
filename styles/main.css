@@ -1,0 +1,12 @@
+.container-fluid {
+    padding: 0 20px;
+    margin: 0;
+}
+
+.footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
